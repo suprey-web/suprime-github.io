@@ -1,0 +1,186 @@
+
+/*  Design Tokens  */
+:root {
+  --bg:           #0d0b08;
+  --bg-elevated:  #141209;
+  --bg-card:      #1a1710;
+  --bg-input:     #1e1b13;
+  --text:         #f0ece3;
+  --text-muted:   rgba(240, 236, 227, 0.45);
+  --text-subtle:  rgba(240, 236, 227, 0.22);
+  --gold:         #c9a84c;
+  --gold-light:   #e8d5a3;
+  --gold-dark:    #a07830;
+  --gold-glow:    rgba(201, 168, 76, 0.18);
+  --border:       rgba(201, 168, 76, 0.12);
+  --border-hover: rgba(201, 168, 76, 0.3);
+  --radius:       12px;
+  --radius-sm:    8px;
+  --shadow-sm:    0 2px 12px rgba(0,0,0,0.5);
+  --shadow-md:    0 8px 32px rgba(0,0,0,0.65);
+  --transition:   0.2s ease;
+  --font-display: 'Playfair Display', serif;
+  --font-body:    'DM Sans', sans-serif;
+  --nav-h:        64px;
+}
+
+/*  Reset & Base  */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--gold);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+a:hover { color: var(--gold-light); }
+
+h1, h2, h3, h4, h5 {
+  font-family: var(--font-display);
+  line-height: 1.2;
+}
+
+/*  NAV  */
+nav{
+  background:rgba(14,14,14,0.92);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+  position:sticky;top:0;z-index:200;
+  padding:0 48px;height:68px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.nav-brand{display:flex;align-items:center;gap:12px}
+.nav-logo-mark{
+  width:38px;height:38px;border-radius:10px;
+  background:linear-gradient(135deg,#c9a84c,#8a6a1a);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Playfair Display',serif;font-weight:700;font-size:17px;color:#0e0e0e;
+}
+.nav-name{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;letter-spacing:-0.01em;color:var(--white)}
+.nav-name span{color:var(--gold)}
+.nav-links{display:flex;gap:32px}
+.nav-links a{font-size:13.5px;font-weight:500;color:var(--text2);transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--white)}
+.nav-right{display:flex;align-items:center;gap:14px}
+.nav-btn{background:var(--gold);color:#0e0e0e;padding:8px 20px;border-radius:22px;font-size:13px;font-weight:600;transition:all .2s}
+.nav-btn:hover{background:var(--gold2)}
+
+
+/*  Section Wrapper  */
+.section {
+  min-height: calc(100vh - var(--nav-h));
+  padding: 3rem 0 5rem;
+  background: var(--bg) !important;
+}
+
+.section-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/*  Page Title  */
+.page-title {
+  margin-bottom: 2.5rem;
+}
+
+.page-title h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: var(--text);
+  margin-bottom: 0.5rem;
+}
+
+.page-title p {
+  color: var(--text-muted);
+  font-size: 1rem;
+  font-weight: 300;
+}
+
+/*  Label  */
+.label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.75;
+  margin-bottom: 0.85rem;
+}
+
+/*  Divider  */
+.divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2.5rem 0;
+}
+
+/*  Footer  */
+footer {
+  background: #080705;
+  color: var(--text-muted);
+  padding: 3.5rem 2rem 0;
+  border-top: 1px solid var(--border);
+}
+
+.footer-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 2.5rem;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.footer-brand-name {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: var(--text);
+  margin-bottom: 0.75rem;
+}
+.footer-brand-name span { color: var(--gold); font-style: italic; }
+
+.footer-brand p {
+  font-size: 0.85rem;
+  line-height: 1.65;
+  color: var(--text-subtle);
+  max-width: 240px;
+}
+
+.footer-col h5 {
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-subtle);
+  margin-bottom: 1rem;
+}
+
+.footer-col a {
+  display: block;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+  transition: color var(--transition);
+}
+.footer-col a:hover { color: var(--gold); }
+
+.footer-bottom {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1.25rem 0;
+  font-size: 0.78rem;
+  color: var(--text-subtle);
+}
+

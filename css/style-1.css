@@ -1,0 +1,411 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --night: #0a0c10;
+  --deep: #0f1318;
+  --card: #141820;
+  --border: rgba(255,255,255,0.07);
+  --gold: #c9a96e;
+  --gold-light: #e2c89a;
+  --gold-dim: rgba(201,169,110,0.15);
+  --white: #f4f0eb;
+  --muted: rgba(244,240,235,0.45);
+  --accent: #2dd4bf;
+  --radius: 14px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--night);
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── NAV ── */
+nav{
+  background:rgba(14,14,14,0.92);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+  position:sticky;top:0;z-index:200;
+  padding:0 48px;height:68px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.nav-brand{display:flex;align-items:center;gap:12px}
+.nav-logo-mark{
+  width:38px;height:38px;border-radius:10px;
+  background:linear-gradient(135deg,#c9a84c,#8a6a1a);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Playfair Display',serif;font-weight:700;font-size:17px;color:#0e0e0e;
+}
+.nav-name{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;letter-spacing:-0.01em;color:var(--white)}
+.nav-name span{color:var(--gold)}
+.nav-links{display:flex;gap:32px}
+.nav-links a{font-size:13.5px;font-weight:500;color:var(--text2);transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--white)}
+.nav-right{display:flex;align-items:center;gap:14px}
+.nav-btn{background:var(--gold);color:#0e0e0e;padding:8px 20px;border-radius:22px;font-size:13px;font-weight:600;transition:all .2s}
+.nav-btn:hover{background:var(--gold2)}
+
+
+/* ── HERO ── */
+.hero {
+  position: relative; min-height: 520px;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 80px 40px 0;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 70% 40%, rgba(201,169,110,0.12) 0%, transparent 65%),
+    radial-gradient(ellipse 50% 80% at 10% 80%, rgba(45,212,191,0.06) 0%, transparent 60%),
+    linear-gradient(160deg, #0f1318 0%, #0a0c10 100%);
+}
+.hero-grid {
+  position: absolute; inset: 0; opacity: 0.03;
+  background-image: linear-gradient(var(--border) 1px, transparent 1px),
+                    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+.hero-content { position: relative; max-width: 680px; }
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 20px;
+}
+.hero-tag::before {
+  content: ''; width: 24px; height: 1px; background: var(--gold);
+}
+.hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 300; line-height: 1.05;
+  color: var(--white); margin-bottom: 18px;
+}
+.hero h1 em { font-style: italic; color: var(--gold); }
+.hero p {
+  font-size: 1rem; color: var(--muted); max-width: 480px;
+  line-height: 1.7; margin-bottom: 32px;
+}
+.hero-pills { display: flex; gap: 10px; flex-wrap: wrap; }
+.pill {
+  display: flex; align-items: center; gap: 6px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  border-radius: 100px; padding: 6px 14px;
+  font-size: 0.78rem; color: var(--muted);
+}
+.pill span { font-size: 0.9rem; }
+
+/* ── SEARCH ── */
+.search-section { position: relative; padding: 0 40px 60px; }
+.search-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 32px 36px;
+  max-width: 960px;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(201,169,110,0.08);
+}
+.search-tabs {
+  display: flex; gap: 4px; margin-bottom: 28px;
+  background: rgba(255,255,255,0.04);
+  border-radius: 10px; padding: 4px;
+  width: fit-content;
+}
+.tab-btn {
+  background: none; border: none; cursor: pointer;
+  color: var(--muted); font-family: 'DM Sans', sans-serif;
+  font-size: 0.82rem; font-weight: 500;
+  padding: 8px 20px; border-radius: 8px;
+  transition: all 0.2s;
+}
+.tab-btn.active { background: var(--gold); color: var(--night); font-weight: 600; }
+.tab-btn:hover:not(.active) { color: var(--white); }
+.search-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 160px 160px 140px;
+  gap: 10px;
+  align-items: end;
+}
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field label {
+  font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--muted); font-weight: 500;
+}
+.field-inner {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 16px;
+  display: flex; align-items: center; gap: 10px;
+  transition: border-color 0.2s;
+  cursor: pointer;
+}
+.field-inner:focus-within { border-color: var(--gold); }
+.field-inner .icon { font-size: 1rem; opacity: 0.6; flex-shrink: 0; }
+.field-inner input,
+.field-inner select {
+  background: none; border: none; outline: none;
+  color: var(--white); font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem; font-weight: 400; width: 100%;
+}
+.field-inner select option { background: var(--card); color: var(--white); }
+.field-inner input::placeholder { color: var(--muted); }
+.search-btn {
+  background: var(--gold);
+  border: none; border-radius: 10px;
+  color: var(--night); font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem; font-weight: 600;
+  padding: 14px 24px; cursor: pointer;
+  transition: all 0.2s;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  height: 50px;
+}
+.search-btn:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201,169,110,0.3); }
+.search-tip { margin-top: 16px; font-size: 0.75rem; color: var(--muted); }
+.search-tip a { color: var(--gold); text-decoration: none; }
+
+/* ── SWAP BUTTON  ── */
+.swap-btn {
+  background: var(--gold-dim);
+  border: 1px solid rgba(201,169,110,0.3);
+  border-radius: 50%; width: 32px; height: 32px;
+  cursor: pointer; color: var(--gold);
+  font-size: 1rem;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s;
+  flex-shrink: 0; margin-bottom: 1px;
+}
+.swap-btn:hover { background: var(--gold); color: var(--night); transform: rotate(180deg); }
+.from-to { display: flex; align-items: flex-end; gap: 8px; }
+
+/* ── DEALS STRIP  ── */
+.deals-strip {
+  margin: 0 40px 60px;
+  background: linear-gradient(135deg, rgba(201,169,110,0.12), rgba(201,169,110,0.04));
+  border: 1px solid rgba(201,169,110,0.2);
+  border-radius: 20px;
+  padding: 36px 44px;
+  display: grid; grid-template-columns: 1fr auto;
+  gap: 24px; align-items: center;
+}
+.deals-strip h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.8rem; font-weight: 300; margin-bottom: 8px;
+}
+.deals-strip h3 em { font-style: italic; color: var(--gold); }
+.deals-strip p { color: var(--muted); font-size: 0.88rem; line-height: 1.6; }
+.deals-strip .cta-group { display: flex; flex-direction: column; gap: 10px; align-items: flex-end; }
+
+.btn-gold {
+  background: var(--gold); color: var(--night) !important;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.85rem; font-weight: 600;
+  padding: 12px 28px; border-radius: 10px;
+  border: none; cursor: pointer; text-decoration: none;
+  display: inline-block; transition: all 0.2s; white-space: nowrap;
+}
+.btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); }
+.btn-outline {
+  background: none; color: var(--muted) !important;
+  border: 1px solid var(--border);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.82rem; font-weight: 400;
+  padding: 10px 24px; border-radius: 10px;
+  cursor: pointer; text-decoration: none;
+  display: inline-block; transition: all 0.2s; white-space: nowrap;
+  text-align: center;
+}
+.btn-outline:hover { color: var(--white) !important; border-color: rgba(255,255,255,0.2); }
+
+/* ── POPULAR ROUTES  ── */
+.section { padding: 60px 40px; }
+.section-header { margin-bottom: 36px; }
+.section-header .eyebrow {
+  font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 10px; display: block;
+}
+.section-header h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 300; line-height: 1.15;
+}
+.section-header h2 em { font-style: italic; color: var(--gold); }
+.section-header p { color: var(--muted); margin-top: 10px; font-size: 0.92rem; line-height: 1.65; }
+
+.routes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 14px;
+}
+.route-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden; cursor: pointer;
+  transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+  text-decoration: none; color: inherit;
+  display: block; position: relative;
+}
+.route-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(201,169,110,0.3);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+}
+.route-img { height: 160px; overflow: hidden; }
+.route-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+.route-card:hover .route-img img { transform: scale(1.06); }
+.route-body { padding: 20px; }
+.route-from-to {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 0.85rem; margin-bottom: 6px;
+}
+.route-code { font-weight: 600; font-size: 0.95rem; letter-spacing: 0.04em; }
+.route-arrow { color: var(--gold); font-size: 0.8rem; }
+.route-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem; font-weight: 400; margin-bottom: 12px;
+}
+.route-meta { display: flex; justify-content: space-between; align-items: flex-end; }
+.route-price .from-label {
+  font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--muted); display: block;
+}
+.route-price .price { font-size: 1.25rem; font-weight: 600; color: var(--gold); }
+.route-price .per { font-size: 0.72rem; color: var(--muted); }
+.route-badge {
+  font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase;
+  padding: 4px 10px; border-radius: 100px;
+  background: rgba(45,212,191,0.12);
+  border: 1px solid rgba(45,212,191,0.25);
+  color: var(--accent);
+}
+.route-badge.hot { background: rgba(201,169,110,0.12); border-color: rgba(201,169,110,0.25); color: var(--gold); }
+.route-badge.new { background: rgba(139,92,246,0.12); border-color: rgba(139,92,246,0.25); color: #a78bfa; }
+
+/* ── FLIGHT DEALS TABLE  ── */
+.deals-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--card);
+}
+table { width: 100%; border-collapse: collapse; }
+thead tr { border-bottom: 1px solid var(--border); }
+thead th {
+  text-align: left; padding: 14px 20px;
+  font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--muted); font-weight: 500;
+}
+tbody tr {
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  transition: background 0.15s;
+}
+tbody tr:last-child { border-bottom: none; }
+tbody tr:hover { background: rgba(255,255,255,0.03); }
+tbody td { padding: 16px 20px; font-size: 0.88rem; }
+.td-dest { display: flex; align-items: center; gap: 10px; }
+.td-flag { font-size: 1.1rem; }
+.td-dest-info strong { display: block; font-weight: 500; font-size: 0.9rem; }
+.td-dest-info span { font-size: 0.75rem; color: var(--muted); }
+.td-price { font-weight: 600; color: var(--gold); font-size: 1rem; }
+.td-airline { color: var(--muted); font-size: 0.82rem; }
+.td-dur { color: var(--muted); font-size: 0.82rem; }
+.direct {
+  color: var(--accent); font-size: 0.78rem; font-weight: 500;
+  background: rgba(45,212,191,0.08); border-radius: 6px;
+  padding: 3px 8px; border: 1px solid rgba(45,212,191,0.2);
+}
+.stop { color: var(--muted); font-size: 0.78rem; }
+.td-action a {
+  font-size: 0.78rem; color: var(--gold); text-decoration: none; font-weight: 500;
+  padding: 6px 14px; border: 1px solid rgba(201,169,110,0.3);
+  border-radius: 8px; transition: all 0.2s; white-space: nowrap;
+}
+.td-action a:hover { background: var(--gold); color: var(--night); }
+
+/* ── AIRLINES STRIP  ── */
+.airlines-section { padding: 20px 40px 60px; }
+.airlines-label {
+  font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 20px;
+}
+.airlines-row { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+.airline-chip {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  border-radius: 10px; padding: 12px 20px;
+  display: flex; align-items: center; gap: 10px;
+  font-size: 0.82rem; color: var(--muted);
+  transition: all 0.2s; cursor: pointer;
+}
+.airline-chip:hover { border-color: rgba(255,255,255,0.15); color: var(--white); }
+.airline-chip .dot { width: 8px; height: 8px; border-radius: 50%; }
+
+/* ── WHY CARDS (unique 4-col layout vs index.html's 3-col) ── */
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 14px;
+}
+.why-card {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 28px 24px;
+  transition: border-color 0.2s;
+}
+.why-card:hover { border-color: rgba(201,169,110,0.25); }
+.why-icon { font-size: 1.8rem; margin-bottom: 14px; }
+.why-card h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 8px; }
+.why-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.65; }
+
+/* ── FOOTER (unique Flights column, different brand font) ── */
+footer { border-top: 1px solid var(--border); padding: 56px 40px 36px; }
+.footer-grid {
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 40px; margin-bottom: 48px;
+}
+.footer-brand p { color: var(--muted); font-size: 0.82rem; line-height: 1.7; margin-top: 14px; max-width: 280px; }
+.footer-col h5 {
+  font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 16px; font-weight: 500;
+}
+.footer-col a {
+  display: block; color: rgba(244,240,235,0.6); text-decoration: none;
+  font-size: 0.83rem; margin-bottom: 10px; transition: color 0.2s;
+}
+.footer-col a:hover { color: var(--white); }
+.footer-bottom {
+  display: flex; justify-content: space-between; align-items: center;
+  padding-top: 24px; border-top: 1px solid var(--border);
+  font-size: 0.76rem; color: var(--muted);
+}
+
+/* ── ANIMATIONS (unique to flights) ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-in { animation: fadeUp 0.6s ease both; }
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  nav { padding: 0 20px; }
+  .nav-links { display: none; }
+  .hero, .search-section, .section, .airlines-section { padding-left: 20px; padding-right: 20px; }
+  .deals-strip { margin: 0 20px 40px; padding: 28px 24px; grid-template-columns: 1fr; }
+  .deals-strip .cta-group { align-items: flex-start; flex-direction: row; }
+  .search-grid { grid-template-columns: 1fr 1fr; }
+  .search-grid .search-btn-wrap { grid-column: 1 / -1; }
+  .search-btn { width: 100%; }
+  .from-to { flex-direction: column; }
+  .swap-btn { display: none; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
